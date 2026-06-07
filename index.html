@@ -1,30 +1,35 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operational Human Oversight in AI-Native Environments — Spatial Logic</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #ffffff;
             --text-main: #111111;
             --text-muted: #666666;
-            --border-color: #f0f0f0;
-            --accent-bg: #fcfcfc;
-            --soft-shadow: 0 10px 30px rgba(0,0,0,0.04), 0 1px 8px rgba(0,0,0,0.02);
-            --depth-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            --border-color: #e5e5e5;
+            --accent-bg: #fafafa;
+            --card-bg: #fcfcfc;
+            --soft-shadow: 0 4px 20px rgba(0,0,0,0.02), 0 1px 4px rgba(0,0,0,0.01);
+            --depth-shadow: 0 12px 34px rgba(0,0,0,0.05), 0 2px 10px rgba(0,0,0,0.02);
+            --mono-code: 'Roboto Mono', 'SF Mono', Menlo, monospace;
         }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.65;
+            line-height: 1.7;
             -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.01em;
         }
-        body.device-desktop .m-only { display: none !important; }
-        body.device-mobile .d-only { display: none !important; }
+
         header {
             display: flex;
             justify-content: space-between;
@@ -33,255 +38,319 @@
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 100;
         }
-        .logo { font-weight: 600; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;}
+
+        .logo { font-weight: 600; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; }
         .logo a { color: var(--text-main); text-decoration: none; }
-        .contact-link { color: var(--text-main); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: opacity 0.2s; }
-        .contact-link:hover { opacity: 0.6; }
+        .platform-link { color: var(--text-main); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1px solid #111; padding-bottom: 2px; transition: opacity 0.2s; }
+        .platform-link:hover { opacity: 0.6; }
+
         .section-block {
             display: grid;
-            grid-template-columns: 140px 1fr 340px;
+            grid-template-columns: 160px 1fr 300px;
             gap: 60px;
-            padding: 7rem 4rem;
+            padding: 8rem 4rem;
             border-bottom: 1px solid var(--border-color);
             max-width: 1440px;
             margin: 0 auto;
         }
-        .col-meta { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
-        .col-meta .num { color: var(--text-main); display: block; margin-bottom: 8px; font-size: 0.8rem; }
-        .col-main { max-width: 720px; }
-        h1 { font-size: 3.2rem; font-weight: 500; line-height: 1.05; margin-bottom: 2.5rem; letter-spacing: -0.035em; color: #000; }
-        h2 { font-size: 1.9rem; font-weight: 500; line-height: 1.25; margin-bottom: 1.8rem; letter-spacing: -0.02em; }
-        h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.6rem; letter-spacing: -0.01em; margin-top: 1.5rem; }
-        p { margin-bottom: 1.2rem; font-size: 1.05rem; color: #333; }
+
+        .col-meta { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; position: sticky; top: 120px; height: max-content; }
+        .col-meta .num { color: var(--text-main); display: block; margin-bottom: 10px; font-size: 0.9rem; font-family: var(--mono-code); font-weight: 500; }
+        
+        .col-main { max-width: 760px; }
+        .col-side { position: sticky; top: 120px; height: max-content; }
+
+        h1 { font-size: 3.5rem; font-weight: 600; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.04em; color: #000; }
+        h2 { font-size: 2rem; font-weight: 600; line-height: 1.25; margin-bottom: 2rem; letter-spacing: -0.025em; color: #000; }
+        h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: -0.015em; color: #000; margin-top: 2.5rem; }
+        
+        p { margin-bottom: 1.5rem; font-size: 1.05rem; color: #222; text-align: justify; }
+        
         blockquote {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-style: italic;
             color: var(--text-main);
-            margin: 1.5rem 0;
+            margin: 2.5rem 0;
             padding-left: 1.5rem;
-            border-left: 3px solid #111;
+            border-left: 2px solid #111;
+            line-height: 1.6;
         }
-        ul.clean-list { list-style: none; margin-bottom: 1.5rem; }
+
+        /* Lists & Structural Elements */
+        ul.clean-list { list-style: none; margin: 1.5rem 0; }
         ul.clean-list li { 
-            margin-bottom: 0.9rem; 
-            padding-left: 1.2rem; 
+            margin-bottom: 1.2rem; 
+            padding-left: 1.5rem; 
             position: relative; 
-            border-left: 2px solid #f0f0f0;
-            transition: border-color 0.3s;
+            border-left: 1px solid var(--border-color);
             font-size: 1.05rem;
-            color: #333;
+            color: #222;
+            transition: border-color 0.2s;
         }
         ul.clean-list li:hover { border-left-color: #111; }
-        .cards-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 2.5rem; }
-        .card { 
-            background: var(--accent-bg); 
-            padding: 2.8rem 2.2rem; 
-            border-radius: 12px; 
+        ul.clean-list li strong { color: #000; font-weight: 600; display: block; margin-bottom: 2px; }
+
+        /* Diagrams & Technical Architecture Notation */
+        .diagram-box {
+            background: var(--accent-bg);
             border: 1px solid var(--border-color);
-            transition: all 0.4s ease;
-        }
-        .card:hover { 
-            background: #fff;
-            border-color: #000;
-            transform: translateY(-4px);
-            box-shadow: var(--depth-shadow);
-        }
-        .card-icon { 
-            width: 44px; height: 44px; 
-            border: 1px solid #ddd; border-radius: 50%; 
-            display: flex; justify-content: center; align-items: center; 
-            margin-bottom: 1.8rem; font-size: 1.1rem;
-            background: #fff;
-        }
-        .highlight-box { 
-            padding: 2.2rem; 
-            background: #fdfdfd; 
-            border: 1px solid var(--border-color);
-            border-left: 3px solid #111; 
-            border-radius: 4px;
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            font-family: var(--mono-code);
+            font-size: 0.85rem;
+            color: var(--text-main);
             box-shadow: var(--soft-shadow);
         }
+        .diagram-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .diagram-node {
+            background: var(--accent-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 500;
+            flex: 1;
+            box-shadow: var(--soft-shadow);
+        }
+        .diagram-arrow {
+            padding: 0 1rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+        
+        /* Functional Matrix Table */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2.5rem 0;
+            box-shadow: var(--soft-shadow);
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .matrix-table th {
+            background: #111;
+            color: #fff;
+            text-align: left;
+            padding: 1rem 1.5rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+        .matrix-table td {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            color: #222;
+            background: #fff;
+        }
+        .matrix-table tr:last-child td { border-bottom: none; }
+        .matrix-table tr:nth-child(even) td { background: var(--card-bg); }
+        .matrix-table td strong { color: #000; }
+
+        /* Structural Cards Block */
+        .cards-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 3rem 0; }
+        .card { 
+            background: var(--card-bg); 
+            padding: 2.5rem 2rem; 
+            border-radius: 8px; 
+            border: 1px solid var(--border-color);
+            box-shadow: var(--soft-shadow);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .card:hover { 
+            background: #ffffff;
+            border-color: #111111;
+            transform: translateY(-2px);
+            box-shadow: var(--depth-shadow);
+        }
+        .card h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.8rem; color: #000; }
+        .card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0; text-align: left; }
+
+        .highlight-box { 
+            padding: 2rem; 
+            background: var(--card-bg); 
+            border: 1px solid var(--border-color);
+            border-left: 2px solid #111; 
+            border-radius: 4px;
+            box-shadow: var(--soft-shadow);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #333;
+        }
+        .highlight-box strong { color: #000; display: block; margin-bottom: 6px; }
+
         .contact-cta { 
             color: var(--text-main); 
             text-decoration: none; 
             font-weight: 600; 
             border-bottom: 2px solid #111; 
             padding-bottom: 4px;
-            transition: all 0.2s;
+            transition: opacity 0.2s;
             display: inline-block;
+            margin-top: 1rem;
         }
-        .contact-cta:hover { color: var(--text-muted); border-bottom-color: var(--text-muted); }
+        .contact-cta:hover { opacity: 0.6; }
+
+        .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
+        .tag { background: var(--accent-bg); border: 1px solid var(--border-color); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; color: var(--text-muted); font-family: var(--mono-code); }
+
         footer {
-            padding: 5rem 4rem;
+            padding: 6rem 4rem;
             text-align: center;
             border-top: 1px solid var(--border-color);
-            background: #fafafa;
+            background: var(--accent-bg);
         }
-        @media (max-width: 1000px) {
+        footer p { text-align: center; font-size: 0.9rem; color: var(--text-muted); }
+
+        @media (max-width: 1100px) {
             header { padding: 1.2rem 2rem; }
             .section-block { 
                 grid-template-columns: 1fr; 
-                gap: 30px; 
-                padding: 4.5rem 1.5rem; 
+                gap: 40px; 
+                padding: 5rem 2rem; 
             }
-            h1 { font-size: 2.5rem; margin-bottom: 1.8rem; }
-            h2 { font-size: 1.7rem; }
-            .col-side { margin-top: 20px; font-size: 0.95rem; }
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 1.75rem; }
+            .col-meta, .col-side { position: static; height: auto; }
             .cards-container { grid-template-columns: 1fr; }
             footer { padding: 4rem 2rem; }
         }
     </style>
 </head>
-<body class="device-desktop"> 
+<body> 
     <header>
         <div class="logo"><a href="https://ai.spatiallogic.org">SPATIAL LOGIC</a></div>
-        <a href="https://ai.spatiallogic.org" class="contact-link d-only">Main Platform →</a>
-        <div class="menu-icon m-only">☰</div>
+        <a href="https://ai.spatiallogic.org" class="platform-link">Main Platform →</a>
     </header>
 
     <main>
+        <!-- EXECUTIVE SUMMARY -->
         <section class="section-block">
             <div class="col-meta"><span class="num">01</span><span>Executive</span></div>
             <div class="col-main">
                 <h1>Operational Human Oversight in AI-Native Environments</h1>
-                <p style="text-transform: uppercase; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 2rem;">
-                    A Governance Framework for Human Stability, Responsible Telemetry, and Contextual Accountability
+                <p style="text-transform: uppercase; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 3rem;">
+                    A Technical Control Framework for Human Stability, Responsible Telemetry, and Contextual Accountability
                 </p>
-                <p>By <a href="https://ai.spatiallogic.org/" target="_blank" style="color: var(--text-main); font-weight: 500;">AI Spatial Logic</a></p>
-                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 3rem 0;">
                 
                 <h2>Executive Summary</h2>
-                <p>Artificial intelligence governance is entering a structural transition.</p>
-                <p>Current governance frameworks remain primarily focused on: model safety, output reliability, bias mitigation, explainability, and regulatory compliance.</p>
-                <p>These remain essential. But they are increasingly insufficient.</p>
-                <p>The next governance challenge is no longer limited to what AI systems produce. The emerging challenge is how continuously mediated AI environments reshape: human operational stability, contextual judgment, oversight continuity, and decision integrity.</p>
-                <p>AI systems are evolving from isolated tools into persistent operational environments: ambient assistants, AI agents, multimodal systems, XR interfaces, wearable computing, contextual automation layers.</p>
-                <p>In these environments, human cognition becomes a system dependency rather than an external supervisor.</p>
-                <p>The central governance problem is therefore shifting from:</p>
-                
-                <blockquote>“Can AI systems be aligned?”</blockquote>
-                
-                <p>toward:</p>
-                
-                <blockquote>“How do humans preserve stable agency and accountable oversight inside AI-mediated operational systems?”</blockquote>
-                
-                <p>This governance gap remains underdeveloped across: enterprise governance, AI regulation, operational AI safety, and human oversight frameworks.</p>
-                <p>The Spatial Logic framework proposes a governance-oriented operational architecture centered around: human operational stability, contextual accountability, responsible telemetry, oversight continuity, and bounded AI mediation.</p>
-                <p>The objective is not to optimize or replace human cognition.</p>
-                <p>The objective is to preserve: interpretability, agency, operational coherence, and accountable human participation within AI-native environments.</p>
+                <p>Artificial intelligence governance is undergoing a critical structural transition. While first-generation frameworks successfully established baseline compliance for model safety, output reliability, bias mitigation, and algorithmic explainability, these parameters are architecturally insufficient for emerging deployment paradigms. The next regulatory and institutional frontier extends beyond what AI models produce; it centers on how continuously mediated AI environments reshape human operational stability, contextual judgment, oversight continuity, and decision integrity.</p>
+                <p>AI systems are transitioning from isolated, task-specific tools into persistent operational environments. Through the convergence of ambient assistants, autonomous agents, multimodal workflows, and wearable spatial computing layers, AI now functions as a continuous cognitive interface. Within these native environments, human cognition is no longer an external oversight mechanism—it has become a critical, system-level dependency.</p>
+                <p>Consequently, the central governance challenge has shifted from model alignment toward operational coordination: <em>"How do human operators preserve stable agency and legal accountability inside AI-mediated systems?"</em> This gap remains severely underdefined across enterprise risk management, AI regulation, and traditional human-in-the-loop oversight models.</p>
+                <p>The Spatial Logic framework establishes an operational governance architecture designed to bridge this systemic vulnerability. By treating human operational stability, contextual accountability, responsible telemetry, and bounded mediation as auditable metrics, this framework ensures that human participation remains substantive, legally compliant, and coherent within AI-native ecosystems.</p>
             </div>
-            <div class="col-side d-only">
+            <div class="col-side">
                 <div class="highlight-box">
-                    <strong>Core Shift:</strong> The next governance challenge is no longer limited to what AI systems produce, but how they reshape human operational stability.
+                    <strong>The Frontier Shift</strong>
+                    The core governance liability has migrated from static algorithm outputs to the live interaction space where systems dynamically interface with human cognition.
                 </div>
             </div>
         </section>
 
+        <!-- SECTION 1 -->
         <section class="section-block">
             <div class="col-meta"><span class="num">02</span><span>Shift</span></div>
             <div class="col-main">
-                <h2>1. The Governance Shift</h2>
-                <h3>AI Governance Is Moving Beyond Model Safety</h3>
-                <p>The first generation of AI governance focused primarily on: datasets, model behavior, algorithmic fairness, and application-level risks.</p>
-                <p>This reflected the architecture of earlier AI systems: discrete, task-oriented, tool-based.</p>
-                <p>That assumption is beginning to break down.</p>
-                <p>Large language models and AI-native systems increasingly function as: reasoning infrastructure, interaction infrastructure, and operational mediation layers.</p>
-                <p>This transition fundamentally alters governance requirements.</p>
-                <p>The critical governance question is no longer solely:</p>
+                <h2>1. The Governance Shift: From Model Safety to Operational Control</h2>
+                <h3>The Limitations of Static Model Auditing</h3>
+                <p>First-generation AI governance assumed a discrete, tool-based architecture where humans interacted with software via punctuated inputs and outputs. This assumption is obsolete. Large Language Models (LLMs) and agentic systems now function as foundational reasoning and interaction infrastructure.</p>
                 
-                <blockquote>“Is the model safe?”</blockquote>
-                
-                <p>but increasingly:</p>
-                
-                <blockquote>“What happens when human reasoning itself becomes operationally entangled with continuously adaptive AI systems?”</blockquote>
-                
-                <p>This represents the emergence of: AI-mediated operational environments. These environments: persist across workflows, carry contextual memory, adapt interactions, influence prioritization, and increasingly shape decision rhythms.</p>
-                <p>Governance systems designed for isolated software tools are poorly equipped for persistent cognitive mediation.</p>
+                <div class="diagram-box">
+                    <div class="diagram-flow">
+                        <div class="diagram-node">[ Traditional Governance ]<br><span style="font-size:0.7rem; color:var(--text-muted)">Model Weights & Static Audits</span></div>
+                        <div class="diagram-arrow">➔</div>
+                        <div class="diagram-node">[ Operational Governance ]<br><span style="font-size:0.7rem; color:var(--text-muted)">Continuous Interaction & Cognitive Integrity</span></div>
+                    </div>
+                </div>
 
-                <h3 style="margin-top: 3rem;">From Compliance Governance to Operational Governance</h3>
-                <p>Traditional AI governance frameworks remain largely: static, policy-centric, documentation-oriented.</p>
-                <p>But AI-native environments introduce dynamic operational conditions: continuous interaction, contextual adaptation, delegated reasoning, distributed authority, and escalating interaction density.</p>
-                <p>Governance therefore requires a transition toward: operational human oversight. This means governance must increasingly address: interaction structures, operational stability, telemetry boundaries, contextual coherence, and oversight continuity.</p>
-                <p>Several emerging governance and research frameworks are beginning to identify this transition. Yet operational human stability remains largely undefined as a governance category.</p>
+                <p>When human reasoning becomes operationally entangled with continuously adaptive AI systems, static compliance models fail. AI-mediated environments carry persistent contextual memory, dynamically alter information salience, and directly influence decision rhythms. Governance frameworks designed for isolated applications cannot regulate a persistent cognitive mediation layer.</p>
+
+                <h3>Transitioning to Technical Human Oversight</h3>
+                <p>Enterprise risk management requires a transition from compliance documentation toward dynamic operational governance. AI-native workflows introduce volatile operational variables: distributed authority, delegated reasoning, and escalating interaction density. To maintain institutional legitimacy, governance must directly parameterize interaction structures, establishing objective thresholds where system-driven cognitive friction degrades human regulatory capacity.</p>
             </div>
             <div class="col-side">
-                <ul class="clean-list" style="margin-top: 4rem;">
-                    <li>Beyond static compliance models</li>
-                    <li>Managing cognitive entanglement</li>
-                    <li>Real-time interaction parameters</li>
-                </ul>
+                <div class="highlight-box">
+                    <strong>Operational Entanglement</strong>
+                    When an adaptive system continuously reshapes information flow, it is no longer a tool; it is an environment structuring human interpretation.
+                </div>
             </div>
         </section>
 
+        <!-- SECTION 2 -->
         <section class="section-block">
             <div class="col-meta"><span class="num">03</span><span>Environments</span></div>
             <div class="col-main">
                 <h2>2. The Emergence of AI-Native Operational Environments</h2>
                 <h3>From Applications to Persistent Cognitive Infrastructure</h3>
-                <p>AI systems are no longer isolated productivity tools. They are increasingly embedded into: operating systems, enterprise workflows, ambient interfaces, XR environments, wearable ecosystems, and real-time decision processes.</p>
-                <p>The resulting architecture is fundamentally different from earlier software paradigms.</p>
-                <p>AI systems increasingly: maintain contextual continuity, shape information salience, mediate decision sequencing, and influence operational interpretation.</p>
-                <p>This transition creates what may be described as: persistent cognitive environments. These environments do not merely assist cognition. They partially structure it. This distinction matters profoundly for governance.</p>
+                <p>Integrating AI into operating systems, enterprise workflows, and wearable ecosystems creates persistent cognitive infrastructure. These systems do not merely assist human decision-makers; they actively structure the operational reality through which choices are made. This environmental shift introduces four systemic operational pressures:</p>
 
-                <h3 style="margin-top: 3rem;">Operational Consequences</h3>
-                <p>As AI mediation becomes persistent, several operational pressures emerge:</p>
-                
                 <ul class="clean-list">
-                    <li><strong>Interaction Density:</strong> Humans are exposed to: continuous prompts, adaptive suggestions, agentic assistance, and parallel interaction streams. This increases cognitive fragmentation risk.</li>
-                    <li><strong>Delegated Reasoning:</strong> Humans increasingly outsource: synthesis, prioritization, summarization, and contextual interpretation to AI systems. Delegation improves efficiency. But governance frameworks remain underdeveloped regarding: when delegation becomes dependency, and when assistance becomes authority drift.</li>
-                    <li><strong>Contextual Desynchronization:</strong> As AI systems maintain persistent contextual memory across workflows, humans may lose: contextual traceability, operational coherence, and decision reconstruction capacity. This creates accountability instability.</li>
-                    <li><strong>Invisible Governance:</strong> AI governance mechanisms are increasingly embedded directly into systems: ranking logic, hidden guardrails, adaptive mediation, and implicit prioritization. Invisible governance may improve operational efficiency. But it may simultaneously reduce: interpretability, human awareness, and institutional legitimacy.</li>
+                    <li>
+                        <strong>Interaction Density</strong>
+                        Operators face an unceasing cadence of automated prompts, adaptive suggestions, and parallel agentic streams. This compounding volume threatens to induce severe cognitive fragmentation.
+                    </li>
+                    <li>
+                        <strong>Delegated Reasoning</strong>
+                        Organizations routinely outsource information synthesis, prioritization, and contextual interpretation to automated systems. While this drives near-term efficiency, current risk frameworks lack metrics to determine when optimized assistance degrades into systemic authority drift.
+                    </li>
+                    <li>
+                        <strong>Contextual Desynchronization</strong>
+                        As multi-agent systems maintain persistent, automated memory across disparate workflows, human operators rapidly lose contextual traceability, undermining the capacity for post-hoc decision reconstruction.
+                    </li>
+                    <li>
+                        <strong>Invisible Governance</strong>
+                        Algorithmic ranking logic, automated guardrails, and implicit prioritization operate beneath the user interface layer. This covert mediation obscures system intent, reducing situational awareness and weakening institutional accountability.
+                    </li>
                 </ul>
             </div>
-            <div class="col-side d-only">
-                <div class="highlight-box">
-                    <strong>Authority Drift:</strong> Delegation improves speed, but without explicit boundaries, assistance invisibly slips into dynamic control over human intent.
+            <div class="col-side">
+                <div class="highlight-box" style="border-left-color: #666;">
+                    <strong>Authority Drift Matrix</strong>
+                    Efficiency metrics mask the gradual erosion of user critical distance, causing legal accountability to remain with the human while execution authority shifts to the software.
                 </div>
             </div>
         </section>
 
+        <!-- SECTION 3 -->
         <section class="section-block">
             <div class="col-meta"><span class="num">04</span><span>Cognition</span></div>
             <div class="col-main">
                 <h2>3. Human Cognition as Governance Infrastructure</h2>
                 <h3>Human Stability Becomes a Governance Variable</h3>
-                <p>Current governance systems generally assume: humans remain stable decision-makers, accountability structures remain legible, and oversight remains operationally intact.</p>
-                <p>These assumptions may no longer hold under persistent AI mediation. Human cognition increasingly becomes: governance infrastructure. Operational governance therefore depends not only on model behavior, but also on preserving: human interpretability, contextual continuity, and oversight capability.</p>
+                <p>Traditional legal and regulatory frameworks assume that human overseers remain stable, independent decision-makers. Under persistent AI mediation, this assumption is invalid. Human cognition has effectively become part of the system's infrastructure; if the interface destabilizes the cognitive capacity of the operator, the entire human-in-the-loop governance model collapses.</p>
 
-                <h3 style="margin-top: 2rem;">Cognitive Fragmentation</h3>
-                <p>AI-native environments generate: rapid context switching, parallel informational flows, persistent notifications, and continuous interaction loops. The resulting operational condition is not merely “distraction.” It is: contextual fragmentation. Under these conditions: humans may lose continuity of reasoning, decision ownership becomes blurred, and operational traceability degrades.</p>
+                <div class="diagram-box" style="line-height: 1.5; font-size: 0.8rem;">
+                    Exponential AI Scaling (Velocity)<br>
+                    └───► [ The Complexity Gap ]<br>
+                        └───► Human Cognitive Limits (Processing Bottleneck)<br>
+                            └───► [ Systemic Vulnerability ]<br>
+                                └───► Authority Drift & Symbolic Oversight
+                </div>
 
-                <h3 style="margin-top: 2rem;">Automation Bias and Authority Drift</h3>
-                <p>Research increasingly highlights risks associated with: over-trust in machine-generated outputs, fluency-driven persuasion, and unreflective delegation. This creates: authority drift. Not because AI explicitly seizes authority, but because humans progressively: defer interpretation, outsource synthesis, and reduce independent verification. Governance frameworks currently lack robust operational models for detecting or mitigating this transition.</p>
-
-                <h3 style="margin-top: 2rem;">Human Agency Erosion</h3>
-                <p>Human agency erosion rarely appears as explicit coercion. It more commonly emerges through: convenience optimization, adaptive automation, recommendation dependency, and operational acceleration pressure. Governance must therefore preserve: meaningful human review, contextual reconstructability, and interruption capacity. Human oversight cannot become symbolic.</p>
+                <h3>Systemic Vulnerabilities in Native Workflows</h3>
+                <p><strong>Contextual Fragmentation:</strong> Rapid context switching and parallel informational flows strip away the continuity of reasoning required for complex auditing, rendering decision ownership ambiguous.</p>
+                <p><strong>Automation Bias and Authority Drift:</strong> Hyper-fluent automated outputs induce unreflective delegation. Humans progressively defer interpretation and reduce independent verification, resulting in a silent drift of operational authority from the accountable human to the opaque system.</p>
+                <p><strong>Erosion of Agency via Convenience Optimization:</strong> Agency is rarely stripped via explicit coercion; it is eroded through convenience optimization, recommendation dependency, and operational acceleration pressure. Human oversight cannot degrade into a symbolic gumipecsét (rubber stamp); frameworks must enforce the structural capacity for meaningful review and immediate interruption.</p>
             </div>
             <div class="col-side">
-                <p style="font-style: italic; color: var(--text-muted); line-height: 1.5; font-size: 0.95rem; margin-top: 4rem; border-left: 2px solid var(--border-color); padding-left: 15px;">
-                    "Human oversight cannot be reduced to a symbolic checkbox inside high-speed operational structures."
-                </p>
+                <blockquote>"Human oversight cannot be reduced to a symbolic checkbox inside high-speed operational structures."</blockquote>
             </div>
         </section>
 
-        <section class="section-block">
-            <div class="col-meta"><span class="num">05</span><span>Telemetry</span></div>
-            <div class="col-main">
-                <h2>4. Responsible Telemetry</h2>
-                <h3>Telemetry Without Cognitive Surveillance</h3>
-                <p>AI-native operational systems increasingly depend on telemetry: interaction patterns, behavioral signals, contextual metadata, wearable streams, and environmental inputs. Telemetry enables: adaptation, optimization, contextual continuity, and operational assistance. But telemetry also introduces major governance risks. The critical distinction is between: operational telemetry and cognitive surveillance.</p>
-
-                <h3 style="margin-top: 2rem;">The Governance Boundary</h3>
-                <p>Responsible telemetry requires bounded operational intent. Telemetry systems should not silently evolve toward: psychological inference, covert behavioral profiling, emotional categorization, or manipulative optimization. This distinction becomes particularly important in: wearable AI, XR systems, ambient interfaces, and AI-assisted operational environments.</p>
-
-                <h3 style="margin-top: 2rem;">Principles for Responsible Telemetry</h3>
-                <ul class="clean-list">
-                    <li><strong>Contextual Limitation:</strong> Telemetry collection should remain strictly proportional to operational necessity.</li>
-                    <li><strong>Human Interpretability:</strong> Users should understand: what signals are collected, why, and how they influence operational mediation.</li>
-                    <li><strong>Non-Covert Mediation:</strong> Adaptive systems should not invisibly manipulate: prioritization, behavioral pacing, or cognitive dependencies.</li>
-                    <li><strong>Escalation Transparency:</strong> When AI systems alter: interaction intensity, operational guidance, or adaptive intervention logic, such tran
+        <!-- SEC
