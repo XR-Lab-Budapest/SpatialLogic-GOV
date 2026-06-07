@@ -1,33 +1,36 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operational Human Oversight in AI-Native Environments — Spatial Logic</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #ffffff;
-            --text-main: #111111;
+            --text-main: #000000;
             --text-muted: #666666;
-            --border-color: #e5e5e5;
+            --border-color: #000000;
+            --border-soft: #e5e5e5;
             --accent-bg: #fafafa;
-            --card-bg: #fcfcfc;
-            --soft-shadow: 0 4px 20px rgba(0,0,0,0.02), 0 1px 4px rgba(0,0,0,0.01);
-            --depth-shadow: 0 12px 34px rgba(0,0,0,0.05), 0 2px 10px rgba(0,0,0,0.02);
-            --mono-code: 'Roboto Mono', 'SF Mono', Menlo, monospace;
+            --card-bg: #ffffff;
+            --mono-code: 'JetBrains Mono', 'Roboto Mono', monospace;
+            
+            /* Spatial Logic Premium Depth Shadows */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 8px rgba(0, 0, 0, 0.02);
+            --shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.06), 0 2px 20px rgba(0, 0, 0, 0.02);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.7;
+            line-height: 1.75;
             -webkit-font-smoothing: antialiased;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.015em;
         }
 
         header {
@@ -35,7 +38,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 4rem;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-soft);
             position: sticky;
             top: 0;
             background: rgba(255, 255, 255, 0.9);
@@ -44,17 +47,17 @@
             z-index: 100;
         }
 
-        .logo { font-weight: 600; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; }
+        .logo { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; }
         .logo a { color: var(--text-main); text-decoration: none; }
-        .platform-link { color: var(--text-main); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1px solid #111; padding-bottom: 2px; transition: opacity 0.2s; }
-        .platform-link:hover { opacity: 0.6; }
+        .platform-link { color: var(--text-main); text-decoration: none; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border-color); padding: 0.5rem 1.2rem; border-radius: 4px; transition: all 0.2s ease; }
+        .platform-link:hover { background: var(--text-main); color: #fff; }
 
         .section-block {
             display: grid;
-            grid-template-columns: 160px 1fr 300px;
+            grid-template-columns: 160px 1fr 320px;
             gap: 60px;
             padding: 8rem 4rem;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-soft);
             max-width: 1440px;
             margin: 0 auto;
         }
@@ -62,174 +65,189 @@
         .col-meta { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; position: sticky; top: 120px; height: max-content; }
         .col-meta .num { color: var(--text-main); display: block; margin-bottom: 10px; font-size: 0.9rem; font-family: var(--mono-code); font-weight: 500; }
         
-        .col-main { max-width: 760px; }
+        .col-main { max-width: 740px; }
         .col-side { position: sticky; top: 120px; height: max-content; }
 
-        h1 { font-size: 3.5rem; font-weight: 600; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.04em; color: #000; }
-        h2 { font-size: 2rem; font-weight: 600; line-height: 1.25; margin-bottom: 2rem; letter-spacing: -0.025em; color: #000; }
-        h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: -0.015em; color: #000; margin-top: 2.5rem; }
+        h1 { font-size: 3.8rem; font-weight: 700; line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -0.040em; color: #000; }
+        h2 { font-size: 2.2rem; font-weight: 700; line-height: 1.25; margin-bottom: 2rem; letter-spacing: -0.03em; color: #000; }
+        h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 1.2rem; letter-spacing: -0.02em; color: #000; margin-top: 3rem; }
         
-        p { margin-bottom: 1.5rem; font-size: 1.05rem; color: #222; text-align: justify; }
+        p { margin-bottom: 1.6rem; font-size: 1.05rem; color: #111111; text-align: left; }
+        p em { font-style: italic; color: #000; }
         
         blockquote {
-            font-size: 1.25rem;
-            font-style: italic;
+            font-size: 1.35rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
             color: var(--text-main);
-            margin: 2.5rem 0;
-            padding-left: 1.5rem;
-            border-left: 2px solid #111;
-            line-height: 1.6;
+            margin: 3rem 0;
+            padding-left: 1.8rem;
+            border-left: 2px solid var(--border-color);
+            line-height: 1.5;
         }
 
-        /* Lists & Structural Elements */
-        ul.clean-list { list-style: none; margin: 1.5rem 0; }
+        /* Lists Architecture */
+        ul.clean-list { list-style: none; margin: 2rem 0; }
         ul.clean-list li { 
-            margin-bottom: 1.2rem; 
-            padding-left: 1.5rem; 
+            margin-bottom: 1.5rem; 
+            padding-left: 1.8rem; 
             position: relative; 
-            border-left: 1px solid var(--border-color);
+            border-left: 1px solid var(--border-soft);
             font-size: 1.05rem;
-            color: #222;
-            transition: border-color 0.2s;
+            color: #111;
         }
-        ul.clean-list li:hover { border-left-color: #111; }
-        ul.clean-list li strong { color: #000; font-weight: 600; display: block; margin-bottom: 2px; }
+        ul.clean-list li:hover { border-left-color: var(--border-color); }
+        ul.clean-list li strong { color: #000; font-weight: 700; display: block; margin-bottom: 4px; letter-spacing: -0.01em; }
 
-        /* Diagrams & Technical Architecture Notation */
+        /* Technical Architecture Diagrams */
         .diagram-box {
             background: var(--accent-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border: 1px solid var(--border-soft);
+            border-radius: 6px;
             padding: 2.5rem;
             margin: 2.5rem 0;
             font-family: var(--mono-code);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            line-height: 1.6;
             color: var(--text-main);
-            box-shadow: var(--soft-shadow);
+            box-shadow: var(--shadow-sm);
         }
         .diagram-flow {
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: #fff;
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
+            border: 1px solid var(--border-soft);
+            padding: 1.8rem;
             border-radius: 6px;
-            text-align: center;
+            gap: 15px;
+            box-shadow: var(--shadow-md);
         }
         .diagram-node {
-            background: var(--accent-bg);
+            background: #ffffff;
             border: 1px solid var(--border-color);
-            padding: 0.8rem 1.2rem;
+            padding: 1rem;
             border-radius: 4px;
-            font-weight: 500;
+            font-weight: 600;
             flex: 1;
-            box-shadow: var(--soft-shadow);
+            text-align: center;
         }
         .diagram-arrow {
-            padding: 0 1rem;
-            color: var(--text-muted);
+            color: var(--text-main);
             font-weight: 700;
+            font-size: 1.1rem;
         }
         
-        /* Functional Matrix Table */
+        /* Responsive Matrix Tables */
+        .table-container { overflow-x: auto; margin: 2.5rem 0; border: 1px solid var(--border-color); border-radius: 6px; box-shadow: var(--shadow-md); }
         .matrix-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 2.5rem 0;
-            box-shadow: var(--soft-shadow);
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
+            text-align: left;
         }
         .matrix-table th {
-            background: #111;
-            color: #fff;
-            text-align: left;
-            padding: 1rem 1.5rem;
-            font-size: 0.8rem;
+            background: #000000;
+            color: #ffffff;
+            padding: 1.2rem 1.5rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
+            letter-spacing: 0.12em;
+            font-weight: 700;
         }
         .matrix-table td {
             padding: 1.2rem 1.5rem;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-soft);
             font-size: 0.95rem;
-            color: #222;
+            color: #111;
             background: #fff;
         }
         .matrix-table tr:last-child td { border-bottom: none; }
-        .matrix-table tr:nth-child(even) td { background: var(--card-bg); }
-        .matrix-table td strong { color: #000; }
+        .matrix-table tr:nth-child(even) td { background: var(--accent-bg); }
 
-        /* Structural Cards Block */
+        /* Structural Grid Block Cards */
         .cards-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 3rem 0; }
         .card { 
             background: var(--card-bg); 
-            padding: 2.5rem 2rem; 
-            border-radius: 8px; 
-            border: 1px solid var(--border-color);
-            box-shadow: var(--soft-shadow);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 2.5rem; 
+            border-radius: 6px; 
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .card:hover { 
-            background: #ffffff;
-            border-color: #111111;
+            border-color: var(--border-color);
             transform: translateY(-2px);
-            box-shadow: var(--depth-shadow);
+            box-shadow: var(--shadow-lg);
         }
-        .card h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.8rem; color: #000; }
-        .card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0; text-align: left; }
+        .card-icon { font-size: 1.2rem; margin-bottom: 1.2rem; color: #000; font-family: var(--mono-code); font-weight: 500; }
+        .card h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.8rem; color: #000; letter-spacing: -0.015em; }
+        .card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0; text-align: left; line-height: 1.6; }
 
         .highlight-box { 
-            padding: 2rem; 
-            background: var(--card-bg); 
-            border: 1px solid var(--border-color);
-            border-left: 2px solid #111; 
+            padding: 2.2rem; 
+            background: var(--accent-bg); 
+            border: 1px solid var(--border-soft);
+            border-left: 2px solid var(--border-color); 
             border-radius: 4px;
-            box-shadow: var(--soft-shadow);
+            box-shadow: var(--shadow-md);
             font-size: 0.95rem;
             line-height: 1.6;
-            color: #333;
+            color: #222;
         }
-        .highlight-box strong { color: #000; display: block; margin-bottom: 6px; }
+        .highlight-box strong { color: #000; display: block; margin-bottom: 8px; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
 
         .contact-cta { 
-            color: var(--text-main); 
+            color: #fff;
+            background: #000;
             text-decoration: none; 
             font-weight: 600; 
-            border-bottom: 2px solid #111; 
-            padding-bottom: 4px;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            padding: 1rem 2rem;
+            border-radius: 4px;
             transition: opacity 0.2s;
             display: inline-block;
-            margin-top: 1rem;
+            margin-top: 2rem;
+            box-shadow: var(--shadow-md);
         }
-        .contact-cta:hover { opacity: 0.6; }
+        .contact-cta:hover { opacity: 0.8; }
 
         .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
-        .tag { background: var(--accent-bg); border: 1px solid var(--border-color); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; color: var(--text-muted); font-family: var(--mono-code); }
+        .tag { background: #ffffff; border: 1px solid var(--border-soft); padding: 5px 10px; border-radius: 4px; font-size: 0.7rem; color: var(--text-muted); font-family: var(--mono-code); font-weight: 500; }
 
         footer {
             padding: 6rem 4rem;
             text-align: center;
-            border-top: 1px solid var(--border-color);
-            background: var(--accent-bg);
+            border-top: 1px solid var(--border-soft);
+            background: #ffffff;
         }
-        footer p { text-align: center; font-size: 0.9rem; color: var(--text-muted); }
+        footer p { text-align: center; font-size: 0.85rem; color: var(--text-muted); font-family: var(--mono-code); }
 
-        @media (max-width: 1100px) {
-            header { padding: 1.2rem 2rem; }
+        /* COMPREHENSIVE RESPONSIVE ENGINE (MOBILE & TABLET FIXES) */
+        @media (max-width: 1200px) {
+            header { padding: 1.5rem 2rem; }
+            .section-block { 
+                grid-template-columns: 1fr 280px; 
+                gap: 40px;
+                padding: 6rem 2rem;
+            }
+            .col-meta { position: static; margin-bottom: 1rem; }
+        }
+
+        @media (max-width: 990px) {
             .section-block { 
                 grid-template-columns: 1fr; 
-                gap: 40px; 
-                padding: 5rem 2rem; 
+                gap: 35px; 
+                padding: 5rem 1.5rem; 
             }
             h1 { font-size: 2.8rem; }
-            h2 { font-size: 1.75rem; }
-            .col-meta, .col-side { position: static; height: auto; }
-            .cards-container { grid-template-columns: 1fr; }
-            footer { padding: 4rem 2rem; }
+            h2 { font-size: 1.8rem; }
+            h3 { font-size: 1.25rem; margin-top: 2rem; }
+            .col-meta, .col-side { position: static; height: auto; width: 100%; }
+            .col-side { margin-top: 1.5rem; }
+            .cards-container { grid-template-columns: 1fr; gap: 16px; }
+            blockquote { font-size: 1.2rem; margin: 2rem 0; }
+            footer { padding: 4rem 1.5rem; }
         }
     </style>
 </head>
@@ -240,12 +258,11 @@
     </header>
 
     <main>
-        <!-- EXECUTIVE SUMMARY -->
         <section class="section-block">
             <div class="col-meta"><span class="num">01</span><span>Executive</span></div>
             <div class="col-main">
                 <h1>Operational Human Oversight in AI-Native Environments</h1>
-                <p style="text-transform: uppercase; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 3rem;">
+                <p style="text-transform: uppercase; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 3.5rem; font-family: var(--mono-code);">
                     A Technical Control Framework for Human Stability, Responsible Telemetry, and Contextual Accountability
                 </p>
                 
@@ -263,7 +280,6 @@
             </div>
         </section>
 
-        <!-- SECTION 1 -->
         <section class="section-block">
             <div class="col-meta"><span class="num">02</span><span>Shift</span></div>
             <div class="col-main">
@@ -273,9 +289,9 @@
                 
                 <div class="diagram-box">
                     <div class="diagram-flow">
-                        <div class="diagram-node">[ Traditional Governance ]<br><span style="font-size:0.7rem; color:var(--text-muted)">Model Weights & Static Audits</span></div>
+                        <div class="diagram-node">[ Traditional Governance ]<br><span style="font-size:0.65rem; font-weight:400; color:var(--text-muted); font-family:var(--mono-code);">Static Model Weights & Post-Hoc Audits</span></div>
                         <div class="diagram-arrow">➔</div>
-                        <div class="diagram-node">[ Operational Governance ]<br><span style="font-size:0.7rem; color:var(--text-muted)">Continuous Interaction & Cognitive Integrity</span></div>
+                        <div class="diagram-node">[ Operational Governance ]<br><span style="font-size:0.65rem; font-weight:400; color:var(--text-muted); font-family:var(--mono-code);">Continuous Interaction & Cognitive Integrity</span></div>
                     </div>
                 </div>
 
@@ -292,7 +308,6 @@
             </div>
         </section>
 
-        <!-- SECTION 2 -->
         <section class="section-block">
             <div class="col-meta"><span class="num">03</span><span>Environments</span></div>
             <div class="col-main">
@@ -320,14 +335,13 @@
                 </ul>
             </div>
             <div class="col-side">
-                <div class="highlight-box" style="border-left-color: #666;">
+                <div class="highlight-box">
                     <strong>Authority Drift Matrix</strong>
                     Efficiency metrics mask the gradual erosion of user critical distance, causing legal accountability to remain with the human while execution authority shifts to the software.
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3 -->
         <section class="section-block">
             <div class="col-meta"><span class="num">04</span><span>Cognition</span></div>
             <div class="col-main">
@@ -335,22 +349,12 @@
                 <h3>Human Stability Becomes a Governance Variable</h3>
                 <p>Traditional legal and regulatory frameworks assume that human overseers remain stable, independent decision-makers. Under persistent AI mediation, this assumption is invalid. Human cognition has effectively become part of the system's infrastructure; if the interface destabilizes the cognitive capacity of the operator, the entire human-in-the-loop governance model collapses.</p>
 
-                <div class="diagram-box" style="line-height: 1.5; font-size: 0.8rem;">
+                <div class="diagram-box" style="line-height: 1.8;">
                     Exponential AI Scaling (Velocity)<br>
                     └───► [ The Complexity Gap ]<br>
                         └───► Human Cognitive Limits (Processing Bottleneck)<br>
                             └───► [ Systemic Vulnerability ]<br>
-                                └───► Authority Drift & Symbolic Oversight
+                                └───► <span style="font-weight: 600; text-decoration: underline;">Authority Drift & Symbolic Human Oversight</span>
                 </div>
 
-                <h3>Systemic Vulnerabilities in Native Workflows</h3>
-                <p><strong>Contextual Fragmentation:</strong> Rapid context switching and parallel informational flows strip away the continuity of reasoning required for complex auditing, rendering decision ownership ambiguous.</p>
-                <p><strong>Automation Bias and Authority Drift:</strong> Hyper-fluent automated outputs induce unreflective delegation. Humans progressively defer interpretation and reduce independent verification, resulting in a silent drift of operational authority from the accountable human to the opaque system.</p>
-                <p><strong>Erosion of Agency via Convenience Optimization:</strong> Agency is rarely stripped via explicit coercion; it is eroded through convenience optimization, recommendation dependency, and operational acceleration pressure. Human oversight cannot degrade into a symbolic gumipecsét (rubber stamp); frameworks must enforce the structural capacity for meaningful review and immediate interruption.</p>
-            </div>
-            <div class="col-side">
-                <blockquote>"Human oversight cannot be reduced to a symbolic checkbox inside high-speed operational structures."</blockquote>
-            </div>
-        </section>
-
-        <!-- SEC
+            
