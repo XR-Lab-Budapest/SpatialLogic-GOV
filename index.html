@@ -5,251 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operational Human Oversight in AI-Native Environments — Spatial Logic</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-main: #000000;
-            --text-muted: #666666;
-            --border-color: #000000;
-            --border-soft: #e5e5e5;
-            --accent-bg: #fafafa;
-            --card-bg: #ffffff;
-            --mono-code: 'JetBrains Mono', 'Roboto Mono', monospace;
-            
-            /* Spatial Logic Premium Depth Shadows */
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.02);
-            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 8px rgba(0, 0, 0, 0.02);
-            --shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.06), 0 2px 20px rgba(0, 0, 0, 0.02);
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.75;
-            -webkit-font-smoothing: antialiased;
-            letter-spacing: -0.015em;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 4rem;
-            border-bottom: 1px solid var(--border-soft);
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 100;
-        }
-
-        .logo { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; }
-        .logo a { color: var(--text-main); text-decoration: none; }
-        .platform-link { color: var(--text-main); text-decoration: none; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--border-color); padding: 0.5rem 1.2rem; border-radius: 4px; transition: all 0.2s ease; }
-        .platform-link:hover { background: var(--text-main); color: #fff; }
-
-        .section-block {
-            display: grid;
-            grid-template-columns: 160px 1fr 320px;
-            gap: 60px;
-            padding: 8rem 4rem;
-            border-bottom: 1px solid var(--border-soft);
-            max-width: 1440px;
-            margin: 0 auto;
-        }
-
-        .col-meta { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; position: sticky; top: 120px; height: max-content; }
-        .col-meta .num { color: var(--text-main); display: block; margin-bottom: 10px; font-size: 0.9rem; font-family: var(--mono-code); font-weight: 500; }
-        
-        .col-main { max-width: 740px; }
-        .col-side { position: sticky; top: 120px; height: max-content; }
-
-        h1 { font-size: 3.8rem; font-weight: 700; line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -0.040em; color: #000; }
-        h2 { font-size: 2.2rem; font-weight: 700; line-height: 1.25; margin-bottom: 2rem; letter-spacing: -0.03em; color: #000; }
-        h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 1.2rem; letter-spacing: -0.02em; color: #000; margin-top: 3rem; }
-        
-        p { margin-bottom: 1.6rem; font-size: 1.05rem; color: #111111; text-align: left; }
-        p em { font-style: italic; color: #000; }
-        
-        blockquote {
-            font-size: 1.35rem;
-            font-weight: 500;
-            letter-spacing: -0.02em;
-            color: var(--text-main);
-            margin: 3rem 0;
-            padding-left: 1.8rem;
-            border-left: 2px solid var(--border-color);
-            line-height: 1.5;
-        }
-
-        /* Lists Architecture */
-        ul.clean-list { list-style: none; margin: 2rem 0; }
-        ul.clean-list li { 
-            margin-bottom: 1.5rem; 
-            padding-left: 1.8rem; 
-            position: relative; 
-            border-left: 1px solid var(--border-soft);
-            font-size: 1.05rem;
-            color: #111;
-        }
-        ul.clean-list li:hover { border-left-color: var(--border-color); }
-        ul.clean-list li strong { color: #000; font-weight: 700; display: block; margin-bottom: 4px; letter-spacing: -0.01em; }
-
-        /* Technical Architecture Diagrams */
-        .diagram-box {
-            background: var(--accent-bg);
-            border: 1px solid var(--border-soft);
-            border-radius: 6px;
-            padding: 2.5rem;
-            margin: 2.5rem 0;
-            font-family: var(--mono-code);
-            font-size: 0.8rem;
-            line-height: 1.6;
-            color: var(--text-main);
-            box-shadow: var(--shadow-sm);
-        }
-        .diagram-flow {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #fff;
-            border: 1px solid var(--border-soft);
-            padding: 1.8rem;
-            border-radius: 6px;
-            gap: 15px;
-            box-shadow: var(--shadow-md);
-        }
-        .diagram-node {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            padding: 1rem;
-            border-radius: 4px;
-            font-weight: 600;
-            flex: 1;
-            text-align: center;
-        }
-        .diagram-arrow {
-            color: var(--text-main);
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        
-        /* Responsive Matrix Tables */
-        .table-container { overflow-x: auto; margin: 2.5rem 0; border: 1px solid var(--border-color); border-radius: 6px; box-shadow: var(--shadow-md); }
-        .matrix-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-        .matrix-table th {
-            background: #000000;
-            color: #ffffff;
-            padding: 1.2rem 1.5rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            font-weight: 700;
-        }
-        .matrix-table td {
-            padding: 1.2rem 1.5rem;
-            border-bottom: 1px solid var(--border-soft);
-            font-size: 0.95rem;
-            color: #111;
-            background: #fff;
-        }
-        .matrix-table tr:last-child td { border-bottom: none; }
-        .matrix-table tr:nth-child(even) td { background: var(--accent-bg); }
-
-        /* Structural Grid Block Cards */
-        .cards-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 3rem 0; }
-        .card { 
-            background: var(--card-bg); 
-            padding: 2.5rem; 
-            border-radius: 6px; 
-            border: 1px solid var(--border-soft);
-            box-shadow: var(--shadow-md);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .card:hover { 
-            border-color: var(--border-color);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-        .card-icon { font-size: 1.2rem; margin-bottom: 1.2rem; color: #000; font-family: var(--mono-code); font-weight: 500; }
-        .card h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.8rem; color: #000; letter-spacing: -0.015em; }
-        .card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0; text-align: left; line-height: 1.6; }
-
-        .highlight-box { 
-            padding: 2.2rem; 
-            background: var(--accent-bg); 
-            border: 1px solid var(--border-soft);
-            border-left: 2px solid var(--border-color); 
-            border-radius: 4px;
-            box-shadow: var(--shadow-md);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #222;
-        }
-        .highlight-box strong { color: #000; display: block; margin-bottom: 8px; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
-
-        .contact-cta { 
-            color: #fff;
-            background: #000;
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 0.9rem;
-            letter-spacing: 0.03em;
-            padding: 1rem 2rem;
-            border-radius: 4px;
-            transition: opacity 0.2s;
-            display: inline-block;
-            margin-top: 2rem;
-            box-shadow: var(--shadow-md);
-        }
-        .contact-cta:hover { opacity: 0.8; }
-
-        .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
-        .tag { background: #ffffff; border: 1px solid var(--border-soft); padding: 5px 10px; border-radius: 4px; font-size: 0.7rem; color: var(--text-muted); font-family: var(--mono-code); font-weight: 500; }
-
-        footer {
-            padding: 6rem 4rem;
-            text-align: center;
-            border-top: 1px solid var(--border-soft);
-            background: #ffffff;
-        }
-        footer p { text-align: center; font-size: 0.85rem; color: var(--text-muted); font-family: var(--mono-code); }
-
-        /* COMPREHENSIVE RESPONSIVE ENGINE (MOBILE & TABLET FIXES) */
-        @media (max-width: 1200px) {
-            header { padding: 1.5rem 2rem; }
-            .section-block { 
-                grid-template-columns: 1fr 280px; 
-                gap: 40px;
-                padding: 6rem 2rem;
-            }
-            .col-meta { position: static; margin-bottom: 1rem; }
-        }
-
-        @media (max-width: 990px) {
-            .section-block { 
-                grid-template-columns: 1fr; 
-                gap: 35px; 
-                padding: 5rem 1.5rem; 
-            }
-            h1 { font-size: 2.8rem; }
-            h2 { font-size: 1.8rem; }
-            h3 { font-size: 1.25rem; margin-top: 2rem; }
-            .col-meta, .col-side { position: static; height: auto; width: 100%; }
-            .col-side { margin-top: 1.5rem; }
-            .cards-container { grid-template-columns: 1fr; gap: 16px; }
-            blockquote { font-size: 1.2rem; margin: 2rem 0; }
-            footer { padding: 4rem 1.5rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body> 
     <header>
@@ -318,7 +74,7 @@
                 <ul class="clean-list">
                     <li>
                         <strong>Interaction Density</strong>
-                        Operators face an unceasing cadence of automated prompts, adaptive suggestions, and parallel agentic streams. This compounding volume threatens to induce severe cognitive fragmentation.
+                        Operators face an unceening cadence of automated prompts, adaptive suggestions, and parallel agentic streams. This compounding volume threatens to induce severe cognitive fragmentation.
                     </li>
                     <li>
                         <strong>Delegated Reasoning</strong>
@@ -350,11 +106,129 @@
                 <p>Traditional legal and regulatory frameworks assume that human overseers remain stable, independent decision-makers. Under persistent AI mediation, this assumption is invalid. Human cognition has effectively become part of the system's infrastructure; if the interface destabilizes the cognitive capacity of the operator, the entire human-in-the-loop governance model collapses.</p>
 
                 <div class="diagram-box" style="line-height: 1.8;">
-                    Exponential AI Scaling (Velocity)<br>
-                    └───► [ The Complexity Gap ]<br>
-                        └───► Human Cognitive Limits (Processing Bottleneck)<br>
-                            └───► [ Systemic Vulnerability ]<br>
-                                └───► <span style="font-weight: 600; text-decoration: underline;">Authority Drift & Symbolic Human Oversight</span>
+                    Exponential AI Scaling (Velocity)
+                    └───► [ The Complexity Gap ]
+                        └───► Human Cognitive Limits (Processing Bottleneck)
+                            └───► [ Systemic Vulnerability ]
+                                └───► Operational Breakdown & Symbolic Human Oversight
                 </div>
 
-            
+                <h3>Systemic Vulnerabilities in Native Workflows</h3>
+                <p><strong>Contextual Fragmentation:</strong> Rapid context switching and parallel informational flows strip away the continuity of reasoning required for complex auditing, rendering decision ownership ambiguous.</p>
+                <p><strong>Automation Bias and Authority Drift:</strong> Hyper-fluent automated outputs induce unreflective delegation. Humans progressively defer interpretation and reduce independent verification, resulting in a silent drift of operational authority from the accountable human to the opaque system.</p>
+                <p><strong>Erosion of Agency via Convenience Optimization:</strong> Agency is rarely stripped via explicit coercion; it is eroded through convenience optimization, recommendation dependency, and operational acceleration pressure. Human oversight cannot degrade into a symbolic gumipecsét (rubber stamp); frameworks must enforce the structural capacity for meaningful review and immediate interruption.</p>
+            </div>
+            <div class="col-side">
+                <blockquote>"Human oversight cannot be reduced to a symbolic checkbox inside high-speed operational structures."</blockquote>
+            </div>
+        </section>
+
+        <section class="section-block">
+            <div class="col-meta"><span class="num">05</span><span>Telemetry</span></div>
+            <div class="col-main">
+                <h2>4. Responsible Telemetry vs. Cognitive Surveillance</h2>
+                <h3>The Governance Boundary</h3>
+                <p>AI-native operational systems require continuous telemetry streams—including interaction patterns, contextual metadata, and ambient environmental inputs—to optimize adaptive workflows. However, this deployment creates an acute governance boundary between legitimate operational telemetry and invasive cognitive surveillance.</p>
+
+                <div class="table-container">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Operational Telemetry</th>
+                                <th>Cognitive Surveillance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Bounded operational intent</strong></td>
+                                <td>Psychological inference</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Interaction latency tracking</strong></td>
+                                <td>Covert behavioral profiling</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Process stability optimization</strong></td>
+                                <td>Emotional categorization</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Proportional workflow adaptation</strong></td>
+                                <td>Manipulative productivity scoring</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>Responsible enterprise governance requires strictly bounded operational intent. Telemetry must never be leveraged for psychological profiling, emotional categorization, or manipulative performance scoring. This distinction is paramount in enterprise spatial computing and high-risk agentic environments.</p>
+
+                <h3>Core Principles for Responsible Telemetry Architectural Design</h3>
+                <p><strong>1. Contextual Limitation:</strong> Telemetry ingestion must remain strictly proportional to immediate operational necessity, preventing the accumulation of persistent behavioral profiles.</p>
+                <p><strong>2. Human Interpretability:</strong> Operators must maintain clear visibility into what interaction signals are collected and how those signals alter the automated mediation logic.</p>
+                <p><strong>3. Non-Covert Mediation:</strong> Adaptive systems are restricted from invisibly manipulating behavioral pacing or forcing cognitive dependencies.</p>
+                <p><strong>4. Escalation Transparency:</strong> Any system-driven alteration to interaction intensity, operational guidance, or automated intervention thresholds must remain fully reviewable and auditable.</p>
+            </div>
+            <div class="col-side">
+                <div class="highlight-box">
+                    <strong>Regulatory Red Lines</strong>
+                    The Spatial Logic framework clarifies how to ingest context to stabilize tasks without inferring or exploiting user psychological states.
+                </div>
+            </div>
+        </section>
+
+        <section class="section-block">
+            <div class="col-meta"><span class="num">06</span><span>Gaps</span></div>
+            <div class="col-main">
+                <h2>5. Regulatory Blind Spots: Underdefined Human Stability</h2>
+                <p>Global regulatory benchmarks—including the EU AI Act (specifically Article 14 on Human Oversight and Article 50 on Transparency), ISO/IEC 42001 standards, and UN AI advisory mandates—rightly champion trustworthy AI. However, these frameworks remain fundamentally model-centric and compliance-centric.</p>
+                <p>They leave the operational reality of human stability underdefined, creating critical regulatory blind spots:</p>
+
+                <ul class="clean-list">
+                    <li><strong>Absence of Interaction-Density Standards:</strong> Current compliance regimes lack metrics for cognitive overload, continuous mediation, and system-induced interruption pressure.</li>
+                    <li><strong>Unmapped Telemetry Vulnerabilities:</strong> Risk frameworks address data privacy and cybersecurity, yet fail to define the cognitive risks associated with real-time ambient data ingestion.</li>
+                    <li><strong>Decaying Review Integrity:</strong> Regulations mandate human verification but ignore how persistent AI interaction structurally degrades the cognitive quality of that verification.</li>
+                    <li><strong>Astructural Accountability:</strong> Organizations are legally required to attribute responsibility, but currently lack the technical tools to reconstruct why a decision emerged when authority is distributed across adaptive agentic networks.</li>
+                </ul>
+            </div>
+            <div class="col-side">
+                <div class="highlight-box">
+                    <strong>Big 4 Advisory Alignment</strong>
+                    This deficit introduces unmapped operational risks that invalidate standard compliance guarantees under actual stress conditions.
+                </div>
+            </div>
+        </section>
+
+        <section class="section-block">
+            <div class="col-meta"><span class="num">07</span><span>Framework</span></div>
+            <div class="col-main">
+                <h2>6. Spatial Logic as a Technical Control Framework</h2>
+                <p>The Spatial Logic IP Stack resolves these regulatory blind spots by operating as an objective, technology-agnostic <strong>interpretive governance layer</strong> for AI-native environments. It explicitly rejects biometric profiling and emotional AI, serving instead as an operational safeguarding architecture.</p>
+                <p>The architecture enforces control through a synchronized dual-framework system:</p>
+
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-icon">// DIAGNOSTIC</div>
+                        <h4>Diagnostic Layer</h4>
+                        <p>Latency-based interaction modeling to detect real-time cognitive breakdown and system-induced fragmentation under operational pressure.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">// STRUCTURAL</div>
+                        <h4>Structural Layer</h4>
+                        <p>Dynamic parameterization of the operational environment to stabilize human decisions, preserve context, and guarantee intervention capacity.</p>
+                    </div>
+                </div>
+
+                <p style="text-align: center; font-weight: 600; font-family: var(--mono-code); font-size: 0.9rem; margin: 2rem 0;">
+                    "Detection without structure is incomplete. Structure without detection is blind."
+                </p>
+
+                <h3>Core Architectural Governance Primitives</h3>
+                <p><strong>Context Continuity:</strong> Preserves a fully reconstructable, step-by-step decision context across complex multi-system interactions, ensuring compliance and auditability.</p>
+                <p><strong>Oversight Continuity:</strong> Enforces visible operational authority, ensuring that the operator retains real, kognitívan kivitelezhető interruption capacity.</p>
+                <p><strong>Responsible Mediation:</strong> Restricts system behaviors to the support of operational clarity, actively preventing the escalation of automated dependency.</p>
+                <p><strong>Bounded Telemetry:</strong> Enforces rigid, transparent scope boundaries and strict proportionality on all incoming interaction data.</p>
+                <p><strong>Escalation Awareness:</strong> Identifies interaction overload, contextual instability, and authority ambiguity as governance-critical exceptions, automatically triggering defensive stabilization protocols.</p>
+            </div>
+            <div class="col-side">
+                <ul class="clean-list" style="margin: 0;">
+                    <li><strong>Agnostic</strong> Technical Architecture</li>
+                    <li><strong>Dynamic</stro
